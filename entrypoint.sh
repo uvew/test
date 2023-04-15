@@ -7,15 +7,15 @@ set -e
 cd "$GITHUB_WORKSPACE"
 
 # Load WakaTime API key from environment variables
-WAKATIME_API_KEY=$1
+# WAKATIME_API_KEY=$1
 
 # Get the user's coding time in the last week
-coding_time=$(curl -s "https://wakatime.com/api/v1/users/current/stats/last_7_days" \
-  -H "Authorization: Basic $(echo -n $WAKATIME_API_KEY | base64)" \
-  -H "Content-Type: application/json" | jq -r '.data | .[] | select(.name=="Coding") | .text')
+#coding_time=$(curl -s "https://wakatime.com/api/v1/users/current/stats/last_7_days" \
+#  -H "Authorization: Basic $(echo -n $WAKATIME_API_KEY | base64)" \
+#  -H "Content-Type: application/json" | jq -r '.data | .[] | select(.name=="Coding") | .text')
 
 # Replace the placeholder text in the readme file with the user's coding time
-sed -i 's/<!-- Edit here -->/Coding Time Last Week: '"$coding_time"'/g' README.md
+sed -i 's/<!-- Edit here -->/Coding Time Last Week: 56' README.md
 
 # Commit the changes
 git config --global user.email "actions@github.com"
